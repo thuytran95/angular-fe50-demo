@@ -1,0 +1,8 @@
+<div class="container">
+  <h1 class="text-center">Bài tập giỏ hàng</h1>
+  <button class="btn btn-success">Giỏ hàng</button>
+
+  <app-product-list (onAddToCart)="handleAddToCart($event)"></app-product-list>
+
+  <app-cart #cartComponent></app-cart>
+</div>

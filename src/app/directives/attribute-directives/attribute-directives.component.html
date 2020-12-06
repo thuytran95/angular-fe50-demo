@@ -1,0 +1,64 @@
+<!-- ngClass -->
+<!-- [class]="{
+  key: value,
+  tên-class: điều-kiện
+}" -->
+<!-- điệu kiên là true: class được add vào tag -->
+<button
+  class="btn"
+  [class]="{
+    'btn-success': isActive,
+    'btn-primary': !isActive
+  }"
+>
+  Submit
+</button>
+
+<!-- className={`btn ${isActive ? 'btn-success' : 'btn-primary'}`} -->
+
+
+<!-- ngStyle -->
+<!-- color: red -->
+<!--
+  [style]="{
+    key: value,
+    thuộc-tính-css: giá-trị
+    background-color: color
+  }"
+-->
+
+<div
+  style="height: 300px;"
+  [style]="{
+    'background-image': 'url(' + imgUrl + ')'
+  }"
+>
+
+</div>
+
+
+<p>{{message}}</p>
+<p ngNonBindable>{{message}}</p>
+
+<div [innerHtml]="data">
+
+</div>
+
+
+<div appHightlight>Highlight</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,126 @@
+<h1 class="text-center">Signup</h1>
+
+<!-- taiKhoan, matKhau, email, hoTen, soDt -->
+<form #signupForm="ngForm" (ngSubmit)="handleSignup(signupForm.value)">
+  <!-- Tài khoản -->
+  <div class="form-group">
+    <label for="taiKhoan">Tài khoản</label>
+    <!--
+      ngModel: lấy giá trị của ô input
+      #taiKhoan="ngModel": lấy trạng thái validation của input gán vào biến taiKhoan
+    -->
+    <input
+      type="text"
+      id="taiKhoan"
+      name="taiKhoan"
+      class="form-control"
+      ngModel
+      #taiKhoan="ngModel"
+      required
+    />
+    <div
+      *ngIf="taiKhoan.invalid && (taiKhoan.touched || taiKhoan.dirty)"
+      class="alert alert-danger"
+    >
+      <span *ngIf="taiKhoan.errors.required">
+        Tài khoản không được để trống
+      </span>
+    </div>
+  </div>
+  <!-- Mật khẩu -->
+  <div class="form-group">
+    <label for="matKhau">Mật khẩu</label>
+    <input
+      type="password"
+      id="matKhau"
+      name="matKhau"
+      class="form-control"
+      ngModel
+      #matKhau="ngModel"
+      required
+      minlength="3"
+      maxlength="20"
+    />
+    <div
+      *ngIf="matKhau.invalid && (matKhau.touched || matKhau.dirty)"
+      class="alert alert-danger"
+    >
+      <span *ngIf="matKhau.errors.required">
+        Mật khẩu không được để trống
+      </span>
+      <span *ngIf="matKhau.errors.minlength || matKhau.errors.maxlength">
+        Mật khẩu phải từ 3 đến 20 kí tự
+      </span>
+    </div>
+  </div>
+  <!-- Email -->
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      class="form-control"
+      ngModel
+      #email="ngModel"
+      required
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+    />
+    <div
+      *ngIf="email.invalid && (email.touched || email.dirty)"
+      class="alert alert-danger"
+    >
+      <span *ngIf="email.errors.required"> Email không được để trống </span>
+      <span *ngIf="email.errors.pattern"> Email không đúng định dạng </span>
+    </div>
+  </div>
+  <!-- Họ tên -->
+  <div class="form-group">
+    <label for="hoTen">Họ tên</label>
+    <input
+      type="text"
+      id="hoTen"
+      name="hoTen"
+      class="form-control"
+      ngModel
+      #hoTen="ngModel"
+      required
+    />
+    <div
+      *ngIf="hoTen.invalid && (hoTen.touched || hoTen.dirty)"
+      class="alert alert-danger"
+    >
+      <span *ngIf="hoTen.errors.required"> Họ tên không được để trống </span>
+    </div>
+  </div>
+  <!-- Số điện thoai -->
+  <div class="form-group">
+    <label for="soDt">Số điện thoại</label>
+    <input
+      type="tel"
+      id="soDt"
+      name="soDt"
+      class="form-control"
+      ngModel
+      #soDt="ngModel"
+      required
+    />
+    <div
+      *ngIf="soDt.invalid && (soDt.touched || soDt.dirty)"
+      class="alert alert-danger"
+    >
+      <span *ngIf="soDt.errors.required">
+        Số điện thoại không được để trống
+      </span>
+    </div>
+  </div>
+  <button class="btn btn-success" [disabled]="signupForm.invalid">
+    Đăng ký
+  </button>
+</form>
+
+<!--
+  {
+    taiKhoan: ""
+  }
+-->

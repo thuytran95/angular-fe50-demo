@@ -1,0 +1,72 @@
+<!-- Interpolation -->
+<p>{{ message }}</p>
+
+<input value="{{ message }}" />
+
+<!-- Property binding -->
+<!-- value="message" => message là 1 chuỗi -->
+<!--  [value]="message" => message là 1 biến -->
+<input [value]="message" />
+
+<button
+  class="btn btn-primary"
+  [disabled]="isDisabled"
+>
+  Click
+</button>
+
+<br />
+<br />
+<br />
+
+<!-- Event binding -->
+<p>{{fullName}}</p>
+<input
+  [value]="fullName"
+  (change)="changeFullName($event)"
+/>
+
+<br />
+
+<p>{{username}}</p>
+<input
+  [value]="username"
+  (input)="username = $event.target.value"
+/>
+
+<br />
+
+<p>{{email}}</p>
+
+<input [value]="email" #emailRef />
+
+<button
+  (click)="changeEmail(emailRef.value)"
+>
+  Update Email
+</button>
+
+
+<!-- Two-way binding -->
+<p>{{address}}</p>
+
+<input [(ngModel)]="address"  />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

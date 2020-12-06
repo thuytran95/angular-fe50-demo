@@ -1,0 +1,118 @@
+<!-- NgIf: ẩn hiện 1 tag/component theo điều kiện -->
+<h1 *ngIf="isActive">Cybersoft</h1>
+
+<button (click)="isActive = !isActive">Toggle</button>
+
+<!-- Đã đăng nhập -->
+<div *ngIf="isLoggedIn; else loginTempate">
+  <h1>Welcome</h1>
+  <button (click)="isLoggedIn = false">Đăng xuất</button>
+</div>
+<!-- Chưa đăng nhập -->
+<!-- <div *ngIf="!isLoggedIn">
+  <h1>Login</h1>
+  <button (click)="isLoggedIn = true">Login</button>
+</div> -->
+
+<!-- Những gì nằm trong tag ng-template sẽ không được render ra UI, nó chỉ được render ra khi mình gọi tới nó -->
+<ng-template #loginTempate>
+  <!-- Chưa đăng nhập -->
+  <div>
+    <h1>Login</h1>
+    <button (click)="isLoggedIn = true">Login</button>
+  </div>
+</ng-template>
+
+<!-- ngSwitch: ẩn hiển tag/component theo điều kiện -->
+<div [ngSwitch]="color">
+  <!-- Chỉ render ra 1 thẻ p có case === color -->
+  <!--  *ngSwitchCase="red" => red là biến -->
+  <!--  *ngSwitchCase="'red'" => red là chuỗi -->
+  <p style="color: red" *ngSwitchCase="'red'">Red</p>
+  <p style="color: blue" *ngSwitchCase="'blue'">Blue</p>
+  <p style="color: green" *ngSwitchCase="'green'">Green</p>
+  <p style="color: yellow" *ngSwitchCase="'yellow'">Yellow</p>
+  <p *ngSwitchDefault>Default</p>
+</div>
+
+<select [value]="color" (change)="color = $event.target.value">
+  <option value="">Default</option>
+  <option value="red">Red</option>
+  <option value="blue">Blue</option>
+  <option value="green">Green</option>
+  <option value="yellow">Yellow</option>
+</select>
+
+<!-- NgFor: duyệt mảng trong html -->
+<!-- index, count: angular cung cấp -->
+<p *ngFor="let hv of dshv; let idx = index; count as total">
+  {{idx + 1}}/{{total}} - {{hv.hoTen}} - {{hv.lop}}
+</p>
+
+<!-- Không thể tồn tại 2 structural directives trên cùng 1 tag -->
+<!-- <p *ngIf="dshv" *ngFor="let hv of dshv; let idx = index; count as total">
+  {{idx + 1}}/{{total}} - {{hv.hoTen}} - {{hv.lop}}
+</p> -->
+
+<div class="d-flex">
+  <!-- ng-container: tương dương React.Fragment, thẻ này k hiển thị ra giao diện -->
+  <ng-container *ngIf="dshv">
+    <p *ngFor="let hv of dshv; let idx = index; count as total">
+      {{idx + 1}}/{{total}} - {{hv.hoTen}} - {{hv.lop}}
+    </p>
+  </ng-container>
+</div>
+
+<!-- Kết hợp ng-container và ng-template -->
+<!-- Tái sử dụng 1 thành phần giao diện -->
+<ng-template #alertTemplate>
+  <div class="alert alert-danger">
+    <strong>Alert</strong>
+  </div>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="alertTemplate"></ng-container>
+<ng-container *ngTemplateOutlet="alertTemplate"></ng-container>
+<ng-container *ngTemplateOutlet="alertTemplate"></ng-container>
+<ng-container *ngTemplateOutlet="alertTemplate"></ng-container>
+<ng-container *ngTemplateOutlet="alertTemplate"></ng-container>
+
+<!-- ng-content -->
+<app-button>
+  <!-- Những tag nằm trong app-button được gọi là content -->
+  <span>OK</span>
+</app-button>
+
+<app-button>
+  <p>Hello</p>
+</app-button>
+
+<div class="container">
+  <div class="row">
+    <div *ngFor="let hv of dshv" class="col-sm-3">
+      <app-card>
+        <p slot="header">{{hv.hoTen}}</p>
+        <p slot="body">{{hv.lop}}</p>
+        <button class="btn btn-success" slot="footer">Chi tiết</button>
+      </app-card>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
